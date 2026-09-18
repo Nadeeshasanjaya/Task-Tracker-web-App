@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TaskForm } from "@/components/organisms/TaskForm";
 import { TaskCard, type Task } from "@/components/molecules/TaskCard";
+import { DashboardStats } from "@/components/organisms/DashboardStats";
 
 export function TaskBoard() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -36,6 +37,7 @@ export function TaskBoard() {
 
   return (
     <div className="flex flex-col gap-4">
+      <DashboardStats tasks={tasks} />
       <TaskForm onCreated={(t) => setTasks((prev) => [t, ...prev])} />
       {tasks.length === 0 ? (
         <p className="text-sm text-gray-500">
