@@ -23,6 +23,12 @@ https://task-tracker-web-app-omega.vercel.app
 - **Styling**: Tailwind CSS v4
 - **Linting**: ESLint with `eslint-plugin-prettier`, `eslint-plugin-sonarjs`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`
 
+## Error monitoring
+
+Errors are captured with [Sentry](https://sentry.io). Client, server, and edge
+runtimes are instrumented via `instrumentation.ts` and `sentry.*.config.ts`.
+Errors surface in the Sentry dashboard with full stack traces and request context.
+
 ## Architecture
 
 - **Atomic Design** component structure: `components/atoms`, `molecules`, `organisms`, `templates`, `pages`
@@ -68,6 +74,7 @@ Two tables linked by a foreign key:
 | `DIRECT_URL`                    | Direct PostgreSQL connection string (used by Prisma CLI) |
 | `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                                     |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase publishable/anon key                            |
+| `NEXT_PUBLIC_SENTRY_DSN`        | Sentry project DSN for error monitoring                  |
 
 ## Scripts
 
