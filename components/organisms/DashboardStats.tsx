@@ -3,9 +3,9 @@
 import type { Task } from "@/components/molecules/TaskCard";
 
 const statusConfig = [
-  { key: "TODO", label: "To Do", color: "bg-gray-100 text-gray-800" },
-  { key: "IN_PROGRESS", label: "In Progress", color: "bg-blue-100 text-blue-800" },
-  { key: "DONE", label: "Done", color: "bg-green-100 text-green-800" },
+  { key: "TODO", label: "To Do", color: "text-slate-600" },
+  { key: "IN_PROGRESS", label: "In Progress", color: "text-[var(--teal)]" },
+  { key: "DONE", label: "Done", color: "text-emerald-600" },
 ] as const;
 
 export function DashboardStats({ tasks }: { tasks: Task[] }) {
@@ -24,33 +24,33 @@ export function DashboardStats({ tasks }: { tasks: Task[] }) {
   return (
     <section
       aria-label="Task summary"
-      className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-4"
+      className="mb-5 grid grid-cols-2 gap-3 md:grid-cols-4"
     >
       {counts.map((s) => (
         <div
           key={s.key}
-          className="rounded-lg border bg-white p-4 shadow-sm"
+          className="rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)]"
         >
-          <p className="text-xs font-medium text-gray-500">{s.label}</p>
-          <p className="mt-1 text-2xl font-bold">{s.count}</p>
+          <p className={`text-xs font-semibold uppercase tracking-wider ${s.color}`}>{s.label}</p>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)]">{s.count}</p>
         </div>
       ))}
 
       <div
-        className={`rounded-lg border p-4 shadow-sm ${
-          overdue > 0 ? "border-red-300 bg-red-50" : "bg-white"
+        className={`rounded-2xl border p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] ${
+          overdue > 0 ? "border-orange-200 bg-orange-50" : "border-[var(--line)] bg-[#fbfcfa]"
         }`}
       >
         <p
           className={`text-xs font-medium ${
-            overdue > 0 ? "text-red-600" : "text-gray-500"
+            overdue > 0 ? "text-orange-700" : "text-orange-600"
           }`}
         >
           Overdue
         </p>
         <p
-          className={`mt-1 text-2xl font-bold ${
-            overdue > 0 ? "text-red-600" : ""
+          className={`mt-2 text-3xl font-bold tracking-tight ${
+            overdue > 0 ? "text-orange-700" : "text-[var(--ink)]"
           }`}
         >
           {overdue}

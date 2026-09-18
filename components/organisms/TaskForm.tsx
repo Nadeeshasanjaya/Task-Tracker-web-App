@@ -44,7 +44,7 @@ export function TaskForm({ onCreated }: { onCreated: (t: Task) => void }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-3 rounded-lg border bg-white p-4 shadow-sm md:grid-cols-2"
+      className="grid gap-4 rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-5 shadow-[0_10px_30px_rgba(23,35,31,0.05)] md:grid-cols-2"
     >
       <div className="md:col-span-2">
         <FormField label="Title" htmlFor="title">
@@ -73,7 +73,7 @@ export function TaskForm({ onCreated }: { onCreated: (t: Task) => void }) {
           id="priority"
           value={priority}
           onChange={(e) => setPriority(e.target.value as Task["priority"])}
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-xl border border-[var(--line)] bg-[#fbfcfa] px-3 py-2.5 text-sm text-[var(--ink)] focus:border-[var(--teal)] focus:outline-none focus:ring-4 focus:ring-[#b8e4dc]/40"
         >
           <option value="LOW">Low</option>
           <option value="MEDIUM">Medium</option>

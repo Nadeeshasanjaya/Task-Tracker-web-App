@@ -7,7 +7,7 @@ export function Input({
   return (
     <input
       {...props}
-      className={`w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-black focus:outline-none ${className}`}
+      className={`w-full rounded-xl border border-[var(--line)] bg-[#fbfcfa] px-3 py-2.5 text-sm text-[var(--ink)] placeholder:text-[#9aa79f] focus:border-[var(--teal)] focus:outline-none focus:ring-4 focus:ring-[#b8e4dc]/40 ${className}`}
     />
   );
 }
