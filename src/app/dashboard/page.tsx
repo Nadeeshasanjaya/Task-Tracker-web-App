@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { DashboardLayout } from "@/components/templates/DashboardLayout";
+import { TaskBoard } from "@/components/organisms/TaskBoard";
 
 export default async function DashboardPage() {
   const supabase = await createSupabaseServerClient();
@@ -12,8 +13,8 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="mt-2 text-sm text-gray-600">Logged in as {user.email}</p>
+      <h1 className="mb-4 text-2xl font-bold">Your tasks</h1>
+      <TaskBoard />
     </DashboardLayout>
   );
 }
