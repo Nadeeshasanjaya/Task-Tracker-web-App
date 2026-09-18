@@ -15,7 +15,11 @@ export function LogoutButton() {
   }
 
   return (
-    <Button variant="ghost" className="w-auto justify-center text-xs md:w-full" onClick={handleLogout}>
+    <Button
+      variant="ghost"
+      className="w-auto justify-center text-xs md:w-full"
+      onClick={handleLogout}
+    >
       Log out
     </Button>
   );

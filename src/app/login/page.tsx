@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -34,15 +35,29 @@ export default function LoginPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-5 py-10">
       <div className="mb-7 text-center">
-        <a href="/" className="mx-auto mb-6 flex w-fit items-center gap-3 text-lg font-bold tracking-tight">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--teal)] text-sm text-white shadow-[0_5px_12px_rgba(8,127,114,0.22)]">T</span>
+        <Link
+          href="/"
+          className="mx-auto mb-6 flex w-fit items-center gap-3 text-lg font-bold tracking-tight"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--teal)] text-sm text-white shadow-[0_5px_12px_rgba(8,127,114,0.22)]">
+            T
+          </span>
           Task-Manager
-        </a>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--teal)]">Welcome back</p>
-        <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)]">Pick up where you left off.</h1>
-        <p className="mt-2 text-sm text-[var(--muted)]">Sign in to keep your day moving.</p>
+        </Link>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--teal)]">
+          Welcome back
+        </p>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)]">
+          Pick up where you left off.
+        </h1>
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Sign in to keep your day moving.
+        </p>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-6 shadow-[0_14px_40px_rgba(23,35,31,0.07)]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-6 shadow-[0_14px_40px_rgba(23,35,31,0.07)]"
+      >
         <input
           type="email"
           placeholder="Email"
@@ -59,7 +74,11 @@ export default function LoginPage() {
           required
           className="rounded-xl border border-[var(--line)] bg-white px-3 py-2.5 text-sm focus:border-[var(--teal)] focus:outline-none focus:ring-4 focus:ring-[#b8e4dc]/40"
         />
-        {error && <p className="rounded-xl bg-[#fff0ed] px-3 py-2 text-sm text-[#c94e3b]">{error}</p>}
+        {error && (
+          <p className="rounded-xl bg-[#fff0ed] px-3 py-2 text-sm text-[#c94e3b]">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
           disabled={loading}
@@ -70,9 +89,12 @@ export default function LoginPage() {
       </form>
       <p className="mt-5 text-center text-sm text-[var(--muted)]">
         New to Task-Manager?{" "}
-        <a href="/signup" className="font-semibold text-[var(--teal)] hover:underline">
+        <Link
+          href="/signup"
+          className="font-semibold text-[var(--teal)] hover:underline"
+        >
           Create an account
-        </a>
+        </Link>
       </p>
     </main>
   );

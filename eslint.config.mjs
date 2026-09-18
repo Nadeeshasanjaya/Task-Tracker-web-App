@@ -4,7 +4,6 @@ import nextTs from "eslint-config-next/typescript";
 import prettierConfig from "eslint-config-prettier";
 import prettier from "eslint-plugin-prettier";
 import sonarjs from "eslint-plugin-sonarjs";
-import jsxA11y from "eslint-plugin-jsx-a11y";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -14,7 +13,6 @@ const eslintConfig = defineConfig([
     plugins: {
       prettier,
       sonarjs,
-      "jsx-a11y": jsxA11y,
     },
     rules: {
       "prettier/prettier": "error",

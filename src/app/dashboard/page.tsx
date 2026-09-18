@@ -21,13 +21,21 @@ export default async function DashboardPage() {
     <DashboardLayout>
       <div className="mx-auto mb-8 max-w-6xl">
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--teal)]">{currentDate}</p>
-          <span className="rounded-full bg-[#e2f3ed] px-3 py-1 text-xs font-semibold text-[var(--teal)]">Personal workspace</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--teal)]">
+            {currentDate}
+          </p>
+          <span className="rounded-full bg-[#e2f3ed] px-3 py-1 text-xs font-semibold text-[var(--teal)]">
+            Personal workspace
+          </span>
         </div>
         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">Make room for what matters.</h1>
-            <p className="mt-2 text-sm text-[var(--muted)]">Plan clearly. Finish confidently.</p>
+            <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
+              Make room for what matters.
+            </h1>
+            <p className="mt-2 text-sm text-[var(--muted)]">
+              Plan clearly. Finish confidently.
+            </p>
           </div>
         </div>
       </div>

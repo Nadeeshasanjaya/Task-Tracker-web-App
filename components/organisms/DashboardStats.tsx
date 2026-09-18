@@ -17,8 +17,7 @@ export function DashboardStats({ tasks }: { tasks: Task[] }) {
   }));
 
   const overdue = tasks.filter(
-    (t) =>
-      t.dueDate && t.status !== "DONE" && new Date(t.dueDate) < now,
+    (t) => t.dueDate && t.status !== "DONE" && new Date(t.dueDate) < now
   ).length;
 
   return (
@@ -31,14 +30,22 @@ export function DashboardStats({ tasks }: { tasks: Task[] }) {
           key={s.key}
           className="rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)]"
         >
-          <p className={`text-xs font-semibold uppercase tracking-wider ${s.color}`}>{s.label}</p>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)]">{s.count}</p>
+          <p
+            className={`text-xs font-semibold uppercase tracking-wider ${s.color}`}
+          >
+            {s.label}
+          </p>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)]">
+            {s.count}
+          </p>
         </div>
       ))}
 
       <div
         className={`rounded-2xl border p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] ${
-          overdue > 0 ? "border-orange-200 bg-orange-50" : "border-[var(--line)] bg-[#fbfcfa]"
+          overdue > 0
+            ? "border-orange-200 bg-orange-50"
+            : "border-[var(--line)] bg-[#fbfcfa]"
         }`}
       >
         <p
