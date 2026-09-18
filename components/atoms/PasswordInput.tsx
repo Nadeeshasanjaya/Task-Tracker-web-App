@@ -18,11 +18,34 @@ export function PasswordInput({
       />
       <button
         type="button"
-        onClick={() => setVisible((current) => !current)}
-        aria-label={visible ? "Hide password" : "Show password"}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg px-2 py-1 text-xs font-semibold text-[var(--muted)] hover:bg-[#e2f3ed] hover:text-[var(--teal)]"
+        onPointerDown={(event) => {
+          event.preventDefault();
+          setVisible(true);
+        }}
+        onPointerUp={() => setVisible(false)}
+        onPointerLeave={() => setVisible(false)}
+        onPointerCancel={() => setVisible(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") setVisible(true);
+        }}
+        onKeyUp={(event) => {
+          if (event.key === "Enter" || event.key === " ") setVisible(false);
+        }}
+        onBlur={() => setVisible(false)}
+        aria-label="Hold to show password"
+        className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-[var(--muted)] hover:bg-[#e2f3ed] hover:text-[var(--teal)]"
       >
-        {visible ? "Hide" : "Show"}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="h-5 w-5"
+        >
+          <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+          <circle cx="12" cy="12" r="2.5" />
+        </svg>
       </button>
     </div>
   );
