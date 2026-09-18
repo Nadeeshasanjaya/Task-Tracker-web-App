@@ -28,26 +28,30 @@ export function DashboardStats({ tasks }: { tasks: Task[] }) {
       {counts.map((s) => (
         <div
           key={s.key}
-          className="rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)]"
+          className="group relative overflow-hidden rounded-2xl border border-[var(--line)] bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)]"
         >
+          <span
+            className={`absolute inset-x-0 top-0 h-1 ${s.key === "TODO" ? "bg-slate-300" : s.key === "IN_PROGRESS" ? "bg-[var(--teal)]" : "bg-emerald-400"}`}
+          />
           <p
             className={`text-xs font-semibold uppercase tracking-wider ${s.color}`}
           >
             {s.label}
           </p>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)]">
+          <p className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)] transition-transform group-hover:translate-x-1">
             {s.count}
           </p>
         </div>
       ))}
 
       <div
-        className={`rounded-2xl border p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] ${
+        className={`relative overflow-hidden rounded-2xl border p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] ${
           overdue > 0
             ? "border-orange-200 bg-orange-50"
             : "border-[var(--line)] bg-[#fbfcfa]"
         }`}
       >
+        <span className="absolute inset-x-0 top-0 h-1 bg-orange-300" />
         <p
           className={`text-xs font-medium ${
             overdue > 0 ? "text-orange-700" : "text-orange-600"

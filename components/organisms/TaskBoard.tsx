@@ -58,8 +58,11 @@ export function TaskBoard() {
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-5">
       <DashboardStats tasks={tasks} />
-      <section id="tasks" className="scroll-mt-6">
-        <div className="mb-3 flex items-end justify-between gap-4">
+      <section
+        id="tasks"
+        className="scroll-mt-6 rounded-3xl border border-[var(--line)] bg-[#fbfcfa]/80 p-4 shadow-[0_14px_36px_rgba(23,35,31,0.045)] sm:p-6"
+      >
+        <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--muted)]">
               Your workflow
@@ -88,20 +91,35 @@ export function TaskBoard() {
           </p>
         </section>
       ) : (
-        <div
-          id="planning"
-          className="grid scroll-mt-6 gap-3 md:grid-cols-2 xl:grid-cols-3"
-        >
-          {tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              onStatusChange={handleStatusChange}
-              onUpdated={handleUpdated}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
+        <section className="rounded-3xl border border-[var(--line)] bg-[#fbfcfa]/60 p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--muted)]">
+                Active list
+              </p>
+              <h2 className="mt-1 text-xl font-bold tracking-tight text-[var(--ink)]">
+                All tasks
+              </h2>
+            </div>
+            <span className="rounded-full bg-[#e2f3ed] px-3 py-1 text-xs font-bold text-[var(--teal)]">
+              {tasks.length} total
+            </span>
+          </div>
+          <div
+            id="planning"
+            className="grid scroll-mt-6 gap-3 md:grid-cols-2 xl:grid-cols-3"
+          >
+            {tasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                onStatusChange={handleStatusChange}
+                onUpdated={handleUpdated}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );

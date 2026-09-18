@@ -57,7 +57,7 @@ export function TaskCard({ task, onStatusChange, onUpdated, onDelete }: Props) {
 
   return (
     <div
-      className={`rounded-2xl border bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(23,35,31,0.08)] ${overdue ? "border-orange-300" : "border-[var(--line)]"}`}
+      className={`group rounded-2xl border bg-[#fbfcfa] p-5 shadow-[0_8px_24px_rgba(23,35,31,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(23,35,31,0.08)] ${overdue ? "border-orange-300" : "border-[var(--line)]"}`}
     >
       {editing ? (
         <form className="space-y-3" onSubmit={handleUpdate}>
@@ -108,7 +108,7 @@ export function TaskCard({ task, onStatusChange, onUpdated, onDelete }: Props) {
       ) : (
         <>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold tracking-tight text-[var(--ink)]">
+            <h3 className="font-semibold tracking-tight text-[var(--ink)] transition-colors group-hover:text-[var(--teal)]">
               {task.title}
             </h3>
             <PriorityBadge priority={task.priority} />
@@ -144,10 +144,18 @@ export function TaskCard({ task, onStatusChange, onUpdated, onDelete }: Props) {
               <option value="IN_PROGRESS">In Progress</option>
               <option value="DONE">Done</option>
             </select>
-            <Button variant="secondary" onClick={() => setEditing(true)}>
+            <Button
+              variant="secondary"
+              className="px-3"
+              onClick={() => setEditing(true)}
+            >
               Edit
             </Button>
-            <Button variant="danger" onClick={() => onDelete(task.id)}>
+            <Button
+              variant="danger"
+              className="px-3"
+              onClick={() => onDelete(task.id)}
+            >
               Delete
             </Button>
           </div>
