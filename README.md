@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Tracker
 
-## Getting Started
+A responsive task management app built with Next.js, TypeScript, Prisma, and Supabase Auth. Tasks are stored in a cloud-hosted PostgreSQL database (Neon) and all data access goes through Next.js API routes.
 
-First, run the development server:
+## Live demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+https://task-tracker-web-app-omega.vercel.app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Email/password authentication (signup, login, logout) via Supabase Auth
+- Create, edit, delete tasks
+- Task fields: title, description, priority (Low/Medium/High), status (To Do / In Progress / Done), due date
+- Change task status via dropdown
+- Dashboard stats: counts per status + overdue tasks highlighted
+- Responsive layout for mobile (375px) and desktop (1280px+)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech stack
 
-## Learn More
+- **Framework**: Next.js 16 (App Router) + TypeScript
+- **Auth**: Supabase Auth (`@supabase/ssr`)
+- **Database**: Neon (PostgreSQL), accessed via Prisma ORM
+- **Styling**: Tailwind CSS v4
+- **Linting**: ESLint with `eslint-plugin-prettier`, `eslint-plugin-sonarjs`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Atomic Design** component structure: `components/atoms`, `molecules`, `organisms`, `templates`, `pages`
+- **API layer**: Next.js route handlers under `app/api/tasks`. UI components never talk to the database directly.
+- **Auth separation**: Supabase is used for identity only; user records are mirrored into the `users` table on first authenticated request, and tasks reference that row via a foreign key.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Data model
 
-## Deploy on Vercel
+Two tables linked by a foreign key:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `users` — id, email, createdAt
+- `tasks` — id, title, description, priority, status, dueDate, userId → users.id
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Local setup
+
+1. Clone the repo and install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Copy `.env.example` to `.env` and fill in the values (see below).
+
+3. Push the Prisma schema to the database:
+
+   ```bash
+   npx prisma db push
+   ```
+
+4. Start the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open http://localhost:3000 and create an account.
+
+## Environment variables
+
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | Pooled PostgreSQL connection string (Neon) |
+| `DIRECT_URL` | Direct PostgreSQL connection string (used by Prisma CLI) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase publishable/anon key |
+
+## Scripts
+
+- `npm run dev` — start dev server
+- `npm run build` — production build
+- `npm run lint` — run ESLint
+- `npx prisma db push` — sync schema to database
+
+## Known limitations
+
+- Row Level Security (RLS) is not enabled on Supabase tables, because data lives in Neon and is accessed through Prisma on the server. Authorization is enforced in the API layer via ownership checks (`userId` match) on every task mutation.
+- No drag-and-drop for status changes; a dropdown is used instead.
+- Email confirmation is disabled in Supabase for ease of testing.
+- No pagination — all tasks are fetched in a single request. Fine for the scope of this project, but would need pagination at scale.
