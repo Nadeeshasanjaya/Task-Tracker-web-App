@@ -62,12 +62,12 @@ Two tables linked by a foreign key:
 
 ## Environment variables
 
-| Variable | Description |
-|---|---|
-| `DATABASE_URL` | Pooled PostgreSQL connection string (Neon) |
-| `DIRECT_URL` | Direct PostgreSQL connection string (used by Prisma CLI) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase publishable/anon key |
+| Variable                        | Description                                              |
+| ------------------------------- | -------------------------------------------------------- |
+| `DATABASE_URL`                  | Pooled PostgreSQL connection string (Neon)               |
+| `DIRECT_URL`                    | Direct PostgreSQL connection string (used by Prisma CLI) |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                                     |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase publishable/anon key                            |
 
 ## Scripts
 
